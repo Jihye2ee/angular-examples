@@ -1,0 +1,33 @@
+.grid-container-row {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 0.8fr 1fr 1fr 1fr;
+    height: 100%;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    padding-top: 0px;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.flex-item-normal {
+    order: 0;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+

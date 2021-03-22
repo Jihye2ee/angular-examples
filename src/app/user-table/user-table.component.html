@@ -1,0 +1,54 @@
+<!-- <button mat-button (click)="openAddUser()">Add Users</button> -->
+<div class="btn-close" (click)="closeDialog()">X</div>
+<div class="flex-container-between">
+    <span class="dialog-title">User List</span>
+    <div class="flex-container-row" style="margin-top: 8px;">
+        <span style="cursor: pointer;padding-right: 10px;" (click)="openAddUser()">addUser</span>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" style="background-color: #2d2d2d;">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="permission">
+            <th mat-header-cell *matHeaderCellDef> Permission </th>
+            <td mat-cell *matCellDef="let element"> {{element.permission}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="institution">
+            <th mat-header-cell *matHeaderCellDef> Institution </th>
+            <td mat-cell *matCellDef="let element"> {{element.preference.institution}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    <mat-paginator [pageSize]="10" [hidePageSize]="true" showFirstLastButtons></mat-paginator>
+    <!-- <mat-paginator showFirstLastButtons></mat-paginator> -->
+  </div>

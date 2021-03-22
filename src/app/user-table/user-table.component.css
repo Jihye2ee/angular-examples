@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+}
+
+.dialog-title {
+    font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 26px;
+    padding: 10px 0px 10px 0px;
+}
+.btn-close {
+    cursor: pointer;
+    font-size: 16px;
+    color: #cecece;
+    text-align: right;
+}
+.icon-color {
+    color: #cecece;
+}
+
+
+.user-info-dialog .mat-dialog-container {
+    width: calc(100vw - 800px);
+    padding: 20px;
+    background-color: #2D2D2D;
+}
+
+.user-info-dialog .mat-paginator-container {
+    background-color: #2d2d2d;
+    color: #cecece;
+    font-size: 10px;
+    line-height: 0.3rem;
+}
+
+.user-info-dialog tr.mat-header-row {
+    height: 100%;
+}
+
+.user-info-dialog .mat-header-cell {
+    color: #d2d2d2;
+    border: 0.3px solid #cecece;
+    border-left: none;
+    padding: 0.3rem;
+}
+
+.user-info-dialog th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+    border-left: 0.3px solid #cecece;
+    width: 24px;
+    padding-left: 10px !important;
+}
+
+.user-info-dialog .mat-cell {
+    color: #d2d2d2;
+    border-bottom: 0.3px solid #cecece;
+    border-right: 0.3px solid #cecece;
+    line-height: 0.483333rem;
+    font-size: 11px;
+    padding: 0.3rem;
+}
+
+.user-info-dialog .mat-row {
+    height: 100%;
+    line-height: 0.483333rem;
+    font-size: 11px;
+    padding: 0.2rem, 0.35rem, 0.2rem;
+}

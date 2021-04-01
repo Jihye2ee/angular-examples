@@ -11,6 +11,7 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { NewUserComponent } from './user-table/add-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WebWorkerComponent } from './web-worker/web-worker.component';
+import { GraphQLModule } from './graphql/graphql-module/graphql.module';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [

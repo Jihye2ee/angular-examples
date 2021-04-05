@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular';
+import { AuthService } from './services/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -11,13 +12,10 @@ export class AppComponent implements OnInit {
     title = 'angular-examples';
     constructor(
         private http: HttpClient,
-        private apollo: Apollo
+        private apollo: Apollo,
+        private authService: AuthService
     ) {
-        // http request
-        // send http request to nest application
-        const url = 'http://localhost:3000/user';
-        const response = this.http.get(url).subscribe(res => console.log(res));
-        console.log('[response]', response);
+        
 
         // const url = 'http://localhost:8081/';
         // const url = 'http://210.114.91.205:3333/user?action=getlist&session_uuid=d14890d0-53b2-11eb-94cb-850b49877db7';

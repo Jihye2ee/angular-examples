@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <form class="login" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+            <label class="title">
+                <h3 class="welcome">Sign in to</h3>
+                <!-- <h5 class="hint" *ngIf="!passwordExpired">Enter your username and password.</h5>
+                <h5 class="hint" *ngIf="passwordExpired">Your password has been expired. Change to new password.</h5> -->
+            </label>
+            <div class="col">
+                <input class="user_name" type="text" placeholder="Username" formControlName="username">
+                <input class="user_password" type="password" placeholder="Password" formControlName="password">
+                <div class="checkbox">
+                    <input type="checkbox" id="rememberme" [checked]="isRememberedIdExist()" (change)="onRembermeChanged($event)">
+                    <label for="rememberme">
+                        Remember me
+                    </label>
+                </div>
+                <!-- <div class="error active" [hidden]="signInFailed==0">
+                    Invalid username or password.
+                </div>
+                <div class="error active" *ngIf="invalidPasswordCountOver">
+                    Bad passwords count is over than 5, Your account lockout.
+                </div> -->
+                <button type="submit" class="btn btn-primary">SIGN IN</button>
+            </div>
+        </form>
+    </div>
+</div>

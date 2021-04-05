@@ -12,9 +12,12 @@ import { NewUserComponent } from './user-table/add-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WebWorkerComponent } from './web-worker/web-worker.component';
 import { GraphQLModule } from './graphql/graphql-module/graphql.module';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path: '', redirectTo: 'login', pathMatch: 'full' },
+  {path: 'login', component: LoginComponent },
   {path: 'home', component: HomeComponent },
   {path: 'workers', component: WebWorkerComponent}
 ];
@@ -24,7 +27,8 @@ const routes: Routes = [
     HomeComponent,
     UserTableComponent,
     NewUserComponent,
-    WebWorkerComponent
+    WebWorkerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ const routes: Routes = [
     HttpClientModule,
     GraphQLModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [
     AppComponent
   ]

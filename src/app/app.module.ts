@@ -14,12 +14,15 @@ import { WebWorkerComponent } from './web-worker/web-worker.component';
 import { GraphQLModule } from './graphql/graphql-module/graphql.module';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { StudiesComponent } from './studies/studies.component';
+import { StudiesService } from './common/services/studies.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: 'login', component: LoginComponent },
   {path: 'home', component: HomeComponent },
-  {path: 'workers', component: WebWorkerComponent}
+  {path: 'workers', component: WebWorkerComponent},
+  {path: 'studies', component: StudiesComponent},
 ];
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ const routes: Routes = [
     UserTableComponent,
     NewUserComponent,
     WebWorkerComponent,
-    LoginComponent
+    LoginComponent,
+    StudiesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ const routes: Routes = [
     GraphQLModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    StudiesService
   ],
   bootstrap: [
     AppComponent

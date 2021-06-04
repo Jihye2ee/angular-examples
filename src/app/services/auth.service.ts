@@ -14,6 +14,15 @@ export class AuthService {
         private http: HttpClient
     ) { }
 
+    signup(user: User) {
+        console.log('[signup]', user);
+        return this.http.post(`${this.appUrl}/auth/login`, user)
+        .pipe(
+            tap((res) => this.setToken(res['access_token']),
+            // shareReplay()
+        ));
+    }
+
     signin(user: User) {
         console.log('[signin]', user);
         return this.http.post(`${this.appUrl}/auth/login`, user)

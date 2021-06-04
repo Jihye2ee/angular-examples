@@ -19,11 +19,27 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private route: Router,
+        private router: Router,
         private http: HttpClient
     ) { }
 
     ngOnInit(): void {
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.addEventListener('message', function(event) {
+        //         console.log('event: ', event);
+        //     });
+
+        //     navigator.serviceWorker.register('assets/scripts/service-worker.js').then((registration) => {
+        //         console.log('service worker register', registration);
+        //         return navigator.serviceWorker.ready;
+        //     });
+        // }
+        var myWorker = new Worker("./assets/scripts/service-worker.js");
+        myWorker.onmessage = function(e) {
+            // result.textContent = e.data;
+            console.log('Login Message received from worker');
+        }
+
         this.signInForm = new FormGroup({
             username: new FormControl(),
             password: new FormControl(),
@@ -47,7 +63,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.signin(this.signInForm.value).subscribe(res => {
             console.log('[login success]', res);
-            this.route.navigate(['home']);
+            this.router.navigate(['home']);
         })
         // this.http.post(
         //     'http://localhost:3000/auth/login', 
@@ -58,12 +74,32 @@ export class LoginComponent implements OnInit {
 
     }
 
+    onSignup() {
+        this.authService.signup(this.signInForm.value).subscribe(res => {
+            // console.log('[login success]', res);
+            // this.route.navigate(['home']);
+        })
+    }
+
     isRememberedIdExist() {
         return true;
     }
 
     onRembermeChanged(event) {
 
+    }
+
+    openNew() {
+        const width = window.screen.width;
+        const height = window.screen.height;
+        const options = 'resizable=1, scrollbars=1, fullscreen=0, '
+            + 'width=' + width + ', height=' + height + ','
+            + 'screenX=100 , left=100, screenY=0, top=0, v-toolbar=0, menubar=0, status=0';
+        window.open('#/home', 'home', options);
+    }
+    
+    openStudyList() {
+        this.router.navigate(['studies']);
     }
 
 }

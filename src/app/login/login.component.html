@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        <form class="login" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <form class="login" [formGroup]="signInForm">
             <label class="title">
                 <h3 class="welcome">Sign in to</h3>
                 <!-- <h5 class="hint" *ngIf="!passwordExpired">Enter your username and password.</h5>
                 <h5 class="hint" *ngIf="passwordExpired">Your password has been expired. Change to new password.</h5> -->
             </label>
             <div class="col">
-                <input class="user_name" type="text" placeholder="Username" formControlName="username">
+                <input class="user_name" type="text" placeholder="Username" formControlName="name">
                 <input class="user_password" type="password" placeholder="Password" formControlName="password">
                 <div class="checkbox">
                     <input type="checkbox" id="rememberme" [checked]="isRememberedIdExist()" (change)="onRembermeChanged($event)">
@@ -21,7 +21,11 @@
                 <div class="error active" *ngIf="invalidPasswordCountOver">
                     Bad passwords count is over than 5, Your account lockout.
                 </div> -->
-                <button type="submit" class="btn btn-primary">SIGN IN</button>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">SIGN IN</button>
+                <button type="button" class="btn btn-primary" (click)="onSignup()">SIGN Up</button>
+                <br/>
+                <button type="button" class="btn btn-primary" (click)="openNew()">service worker</button>
+                <button type="button" class="btn btn-primary" (click)="openStudyList()">study list</button>
             </div>
         </form>
     </div>

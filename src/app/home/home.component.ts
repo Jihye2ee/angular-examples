@@ -20,21 +20,70 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private http: HttpClient
-    ) { }
+    ) {}
+
     ngOnInit(): void {
+
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.addEventListener('message', function(event) {
+        //         console.log('event: ', event);
+        //     });
+
+        //     navigator.serviceWorker.register('assets/scripts/service-worker.js').then((e) => {
+        //         console.log('service worker register', e);
+
+        //         //this.sendMessage({id:'message'}).then();
+        //         navigator.serviceWorker.controller.postMessage({id:'message'});
+        //         // return navigator.serviceWorker.ready;
+        //     });
+        // }
         // http request
         // send http request to nest application
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
+        // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authService.getToken()}`);
         // console.log('[headers]', headers);
-        const url = 'http://localhost:3000/user';
-        this.http.get(url, { headers }).subscribe(res => {
-            console.log('[profile] success', res);
-        }, error => {
-            console.log('[profile error]', error);
-        });
+        // const url = 'http://localhost:3000/user';
+        // this.http.get(url, { headers }).subscribe(res => {
+        //     console.log('[profile] success', res);
+        // }, error => {
+        //     console.log('[profile error]', error);
+        // });
         // console.log('[response]', response);
         // throw new Error('Method not implemented.');
+
+       
     }
+
+    sendMessage(message) {
+        console.log('[sendMessage]', message);
+        navigator.serviceWorker.ready.then(function(registration) {
+            console.log('Checked for update', registration);
+            registration.update().then(function() {
+                console.log('Checked for update');
+            }).catch(function(error) {
+                console.error('Update failed', error);
+            });
+        });
+        // This wraps the message posting/response in a promise, which will resolve if the response doesn't
+        // contain an error, and reject with the error if it does. If you'd prefer, it's possible to call
+        // controller.postMessage() and set up the onmessage handler independently of a promise, but this is
+        // a convenient wrapper.
+        // return new Promise(function(resolve, reject) {
+        //     var messageChannel = new MessageChannel();
+        //     messageChannel.port1.onmessage = function(event) {
+        //         if (event.data.error) {
+        //             reject(event.data.error);
+        //         } else {
+        //             resolve(event.data);
+        //         }
+        // };
+      
+        //     // This sends the message data as well as transferring messageChannel.port2 to the service worker.
+        //     // The service worker can then use the transferred port to reply via postMessage(), which
+        //     // will in turn trigger the onmessage handler on messageChannel.port1.
+        //     // See https://html.spec.whatwg.org/multipage/workers.html#dom-worker-postmessage
+        //     navigator.serviceWorker.controller.postMessage(message);
+        // });
+      }
 
     openUserTable() {
         console.log('[openUserTable]');

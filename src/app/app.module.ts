@@ -11,45 +11,45 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { NewUserComponent } from './user-table/add-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WebWorkerComponent } from './web-worker/web-worker.component';
-import { GraphQLModule } from './graphql/graphql-module/graphql.module';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './common/services/auth.service';
 import { StudiesComponent } from './studies/studies.component';
 import { StudiesService } from './common/services/studies.service';
+import { ExcelService } from './common/services/excel.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: 'login', component: LoginComponent },
-  {path: 'home', component: HomeComponent },
-  {path: 'workers', component: WebWorkerComponent},
-  {path: 'studies', component: StudiesComponent},
+    {path: '', redirectTo: 'login', pathMatch: 'full' },
+    {path: 'login', component: LoginComponent },
+    {path: 'home', component: HomeComponent },
+    {path: 'workers', component: WebWorkerComponent},
+    {path: 'studies', component: StudiesComponent},
 ];
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    UserTableComponent,
-    NewUserComponent,
-    WebWorkerComponent,
-    LoginComponent,
-    StudiesComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes, {useHash: true}),
-    BrowserAnimationsModule,
-    AngularMaterialsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    GraphQLModule
-  ],
-  providers: [
-    AuthService,
-    StudiesService
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        UserTableComponent,
+        NewUserComponent,
+        WebWorkerComponent,
+        LoginComponent,
+        StudiesComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes, {useHash: true}),
+        BrowserAnimationsModule,
+        AngularMaterialsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+    ],
+    providers: [
+        AuthService,
+        StudiesService,
+        ExcelService
+    ],
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }

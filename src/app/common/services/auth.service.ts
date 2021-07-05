@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 
 import { Injectable } from "@angular/core";
-import { shareReplay, tap } from "rxjs/operators";
-import { User } from "../user-table/user-data";
+import { tap } from "rxjs/operators";
+import { User } from "src/app/models/user";
 
 @Injectable()
 export class AuthService {

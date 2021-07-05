@@ -1,367 +1,85 @@
-.mat-table {
-    overflow: auto;
-    /*
-    max-height: 500px;
-    */
-  }
-  /* Toolbar */
-  .mat-header-cell {
-    padding-left: 5px;
-    border: 1px solid darkgray;
-    text-align: left;
-    background: #3d3d3d;
-    color: whitesmoke;
-  }
-  
-  .mat-form-field-infix {
-    border-top: none;
-  }
-  
-  .mat-cell {
-    padding-left: 5px;
-    font-size: 11px;
-    line-height: 19px;
-    color: lightgray;
-    border: 1px solid #5a5a5a;
-    text-align: left;
-  }
-  .mat-header-row {
-    padding-left:5px;
-    height: 20px;
-    font-weight: bold;
-  }
-  .mat-row {
-    padding-left:5px;
-    height: 20px;
-    cursor: pointer;
-  }
-  /*
-  .mat-cell, .mat-header-cell {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
-    white-space: nowrap;
-  }
-  */
-  .truncate-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  
-  }
-  tr.study-element-row {
-    height: 0;
-  }
-  tr.study-element-row:hover {
-    background: #3d3d3d;
-  }
-  
-  tr.study-element-row:active {
-    background: lightgray;
-  }
-  /*
-  required for the enableGhostResize option to work
-  */
-  /* mwlResizable {
-    box-sizing: border-box;
-  } */
-  /*
-  .study-element-row:hover {
-    background: #777;
-  }
-  */
-  
-  tr.non-selected-study-row {
-    background: #212121;
-  }
-  
-  tr.clicked-study-row {
-    background-color: #6e6e6e;
-  }
-  tr.selected-study-row {
-    background: #6d4c41   ;
-  }
-  
-  .hightlighted-study-list-item {
-    color:#E4A552;
-    font-weight:bold;
-  }
-  .hightlighted-study-list-item2 {
-    color:#E4A552;
-    font-weight:bold;
-  }
-  
-  ::ng-deep .mat-form-field {
-    color: whitesmoke;
-    width: 100px;
-  }
-  
-  ::ng-deep .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
-    border-top: none;
-  }
-  /*
-  ::ng-deep .mat-sort-header-container {
-    width: 170px;
-  }
-  */
-  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
-    color: darkgray;
-  }
-  ::ng-deep .mat-checkbox-checkmark {
-    border: 1px solid whitesmoke;
-  }
-  ::ng-deep .mat-select.mat-focused .mat-select-trigger .mat-select-arrow {
-    color: #63961C;
-  }
-  
-  .context-menu-button {
-    line-height: 30px;
-    height: 30px;
-    outline: none;
-  }
-  
-  #status_select_button {
-    height: 10px;
-    padding: 0px;
-    margin: 0px;
-    background: #3d3d3d;
-    color: whitesmoke;
-  }
-  .spacer {
-    flex: 1 1 auto;
-  }
-  table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: inherit;
-    table-layout: fixed;
-  }
-  .patient-info-name {
-    color: #E4A552;
-    font-weight: 700;
-  }
-  
-  .patient-info {
-    color: #E4A552;
-    font-weight: 700;
-  }
-  /*
-  'select', 'status', 'patient_id', 'patient_name', 'patient_sex', 'patient_age', 'nodule_count', 'study_lung_rads', 'study_date', 'study_description', 'tags', 'professor_id', 'series_count'
-  */
-  
-  table.mat-table {
-    padding: 0px;
-  }
-  
-  tr{
-    background: #212121;
-  }
-  .mat-column-status {
-    flex: 0 0 6% !important;
-    width: 6% !important;
-  }
-  .mat-column-patient_age {
-    flex: 0 0 5% !important;
-    width: 5% !important;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  .mat-column-patient_sex {
-    flex: 0 0 5% !important;
-    width: 5% !important;
-  }
-  .mat-column-nodule_count {
-    flex: 0 0 7% !important;
-    width: 7% !important;
-  }
-  .mat-column-select {
-    flex: 0 0 2% !important;
-    width: 2% !important;
-  }
-  /* .mat-column-series_count {
-    flex: 0 0 7% !important;
-    width: 7% !important;
-  } */
-  .mat-column-tags {
-    flex: 0 0 5% !important;
-    width: 5% !important;
-  }
-  .mat-column-study_lung_rads {
-    flex: 0 0 7% !important;
-    width: 7% !important;
-  }
-  .mat-column-final_rads_score {
-    flex: 0 0 7% !important;
-    width: 7% !important;
-  }
-  .mat-column-patient_id {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 12% !important;
-    width: 12% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    overflow: hidden;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  
-  .mat-column-patient_name {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 13% !important;
-    width: 13% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    overflow: hidden;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  .mat-column-study_description {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 16% !important;
-    width: 16% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    overflow: hidden;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  .mat-column-study_date {
-    flex: 0 0 8% !important;
-    width: 8% !important;
-  }
-  .mat-column-professor_id {
-    flex: 0 0 8% !important;
-    width: 8% !important;
-  }
-  
-  td.mat-cell:first-of-type,
-  td.mat-footer-cell:first-of-type,
-  th.mat-header-cell:first-of-type {
-    padding-left: 8px;
-  }
-  .worklist-study-list{
-    position: relative;
-    top: -10px;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-  .related-worklist-container {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    top: -10px;
-  }
-  
-  /******** Analysing progress animation *******************************************************************************************************/
-  
-  .animation-5 {
-    width: 87px;
-    height: 8px;
-    padding-left: 0px;
-    position: relative;
-    top:-5px;
-  }
-  
-  .animation-5 div {
-    height: 8px;
-    width: 3px;
-    background-color: #0AA699;
-    display: inline-block;
-    margin-right: 3px;
-    -webkit-animation: animation5-bar 1.4s infinite;
-    animation: animation5-bar 1.4s infinite;
-  }
-  
-  .animation-5 .bar1 {
-    -webkit-animation-delay: 0.3s;
-    animation-delay: 0.3s;
-  }
-  
-  .animation-5 .bar2 {
-    -webkit-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-  }
-  
-  .animation-5 .bar3 {
-    -webkit-animation-delay: 0.5s;
-    animation-delay: 0.5s;
-  }
-  
-  .animation-5 .bar4 {
-    -webkit-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-  }
-  
-  .animation-5 .bar5 {
-    -webkit-animation-delay: 0.7s;
-    animation-delay: 0.7s;
-  }
-  
-  @keyframes animation5-bar {
-    50% {
-      transform: scaleY(2);
-    }
-  }
-  
-  /*********************************************************************************************************************************************/
-  /* Spinner position */
-  .spinner-loading-shade {
-    padding-right: 10px;
-    background: #2d2d2d;
-  }
-  /********************/
-  ::ng-deep .mat-paginator-container {
-    position: relative;
-    bottom: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    min-height: 40px;
-    padding: 0 0px !important;
-    flex-wrap: wrap-reverse;
-    width: 100%;
-    background: #2d2d2d;
-    color: lightgray;
-  }
-  ::ng-deep .mat-sort-header-arrow {
-    /*
-    color: #fff;
-    position: relative;
-    right: 0px;
-    */
-  }
-  ::ng-deep .mat-sort-header-button {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-    stroke: whitesmoke;
-  }
-  ::ng-deep .mat-paginator-range-label {
-    margin: 0px !important;
-  }
-  
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: inherit;
+  table-layout: fixed;
+}
+.mat-header-cell {
+  padding-left: 5px;
+  border: 1px solid darkgray;
+  text-align: left;
+  background: #3d3d3d;
+  color: whitesmoke;
+}
+
+.mat-form-field-infix {
+  border-top: none;
+}
+
+.mat-cell {
+  padding-left: 5px;
+  font-size: 11px;
+  line-height: 19px;
+  color: lightgray;
+  border: 1px solid #5a5a5a;
+  text-align: left;
+}
+.mat-header-row {
+  padding-left:5px;
+  height: 20px;
+  font-weight: bold;
+}
+.mat-row {
+  padding-left:5px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.study-table th.mat-header-cell:first-of-type, .study-table td.mat-cell:first-of-type{
+  padding-left: 6px;
+  padding-bottom: 2px;
+}
+.study-table th.mat-header-cell:last-of-type, .study-table td.mat-cell:last-of-type{
+  padding: 0 0 0 6px;
+}
+.material-icons.filter-icon {
+  font-size: small;
+  color: gray;
+  /* color: rgb(0, 113, 219); */
+}
+th .headers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+th .headers .filter-icon-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+tr.localstorage-row {
+  background: #212121;
+}
+tr.localstorage-row:hover {
+  background: #3d3d3d;
+} 
+.mat-column-select {
+  flex: 0 0 2% !important;
+  width: 2% !important;
+}
+
+.mat-column-patientID, .mat-column-patientName {
+  flex: 0 0 15% !important;
+  width: 15% !important;
+}
+
+.mat-column-creationTime, .mat-column-creationDate{
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+
+::ng-deep .mat-dialog-container,::ng-deep .mat-paginator-container {
+  background: #2b2b2b;
+  color: #f2f2f2;
+}

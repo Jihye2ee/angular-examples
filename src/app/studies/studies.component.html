@@ -1,218 +1,90 @@
-<div class="flex-container-row">
-    <div class="flex-container-between" style="width: 100%;">
-        <div class="flex-container-row" style="position: relative;top: 10px;">
-            <div #refreshBtn class="new-study worklist-refresh-button" style="margin-top:0.35rem">
-                <i [ngStyle]="{'color': (studyFilteredColumn.length > 0 || presetFilter !== 'all' ? 'dodgerblue': 'black')}"
-                   [ngClass]="['fa fa-refresh fa-sx']"
-                   matTooltip="Reset List"
-                   matTooltipClass="tooltip">
-                </i>
+<h3 class="modal-title"> Studies List </h3>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 study-table">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? toggleValue(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="patientID">
+        <th mat-header-cell *matHeaderCellDef><div class="headers"> Patient ID 
+           <!--  <div class="filter-icon-btn" (click)="onTextFilter($event, 1)">
+                <span class="material-icons filter-icon" [ngStyle]="{color: coloringFilterSymbol('patient_id') ? '#0288D1': 'grey'}" id="patientID">
+                filter_alt</span>
+            </div> -->
             </div>
-        </div>
-        <div class="flex-container-row" style="align-items: center;">
-            <div class="spinner-loading-shade">
-                <mat-spinner [diameter]="20" *ngIf="isLoadingResults"></mat-spinner>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.patientID}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="patientName">
+        <th mat-header-cell *matHeaderCellDef><div class="headers"> Patient Name 
+                <!-- <div class="filter-icon-btn" (click)="onTextFilter($event, 2)"><span class="material-icons filter-icon"
+                    [ngStyle]="{color: coloringFilterSymbol('patient_id') ? '#0288D1': 'grey'}" id="patientName">
+                    filter_alt</span>
+                </div> -->
             </div>
-            <div>
-                <mat-paginator
-                        [pageSize]=10
-                        [hidePageSize]="true"
-                        [showFirstLastButtons]="studyFilteredColumn.length > 0"
-                        (page)="onSelectPage($event)"
-                >
-                </mat-paginator>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="studyInstanceUID">
+        <th mat-header-cell *matHeaderCellDef><div class="headers"> Study Instance UID 
+               <!--  <div class="filter-icon-btn" (click)="onTextFilter($event, 3)"><span class="material-icons filter-icon"
+                    [ngStyle]="{color: coloringFilterSymbol('patient_id') ? '#0288D1': 'grey'}" id="studyInstanceUID">
+                    filter_alt</span>
+                </div> -->
             </div>
-        </div>
-    </div>
-</div>
-<!-- Main Study-->
-<ng-container [ngTemplateOutlet]="main_study"
-              [ngTemplateOutletContext]="{ data: dataSource, main:true }" ></ng-container>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.studyInstanceUID}} </td>
+    </ng-container>
 
-<!-- Related Study Header -->
-<!-- div class="related-worklist-container">
-    <div class="worklist-header">
-        <span class="worklist-title"><i [ngClass]="['fa fa-bars fa-sx']"></i>&nbsp;Related Studies</span>
-    </div>
-</div>
- -->
-<!-- Related Study -->
-<!-- <ng-container [ngTemplateOutlet]="main_study"
-              [ngTemplateOutletContext]="{ data: relatedStudiesdataSource, main:false }"></ng-container> -->
-<!-- Study list -->
-<ng-template #main_study let-data="data" let-isMainStudy="main">
-    <div style="background-color:black" [ngStyle]="{'height': isMainStudy ? '275px': '120px'}" class="worklist-study-list mat-elevation-z8">
-        <table mat-table [dataSource]="data" matSort [trackBy]="trackByFn"
-               class="mat-cell" aria-label="Elements"
-               (matSortChange)="onSortRequest($event)"
-               [matSortActive]="sortActive"
-               id="matTable"
-        >
-            <ng-container matColumnDef="select">
-                <th mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                                  [checked]="selection.hasValue() && isAllSelected()"
-                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                  [aria-label]="checkboxLabel()"
-                                  color="primary">
-                    </mat-checkbox>
-                </th>
-                <td mat-cell *matCellDef="let row">
-                    <mat-checkbox (click)="$event.stopPropagation()"
-                                  (dblclick)="$event.stopPropagation()"
-                                  (change)="onSingleToggle($event, row); $event? selection.toggle(row) : null"
-                                  [checked]="selection.isSelected(row)"
-                                  [aria-label]="checkboxLabel(row)">
-                    </mat-checkbox>
-                </td>
-            </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef><div class="headers"> Study Date 
+                <!-- <div class="filter-icon-btn" (click)="onTextFilter($event, 4)"><span class="material-icons filter-icon"
+                    [ngStyle]="{color: coloringFilterSymbol('patient_id') ? '#0288D1': 'grey'}" id="creationDate">
+                    filter_alt</span>
+                </div> -->
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+    </ng-container>
 
-            <!-- Columns data display  -->
-            <!-- columns resize  mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event, column)"
-                  [resizeEdges]="{bottom: false, right: true, top: false, left: true}"-->
-            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns;let idx = index">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header id="{{column}}">{{displayedTitle[idx]}}
-                    <!-- status select(all, read, unread)
-                    <div id="status_select_button" *ngIf="idx === 0" style="width: 100px; height: 20px;">
-                    <mat-form-field style="border-top:none;" (click)="$event.stopPropagation()">
-                        <select matNativeControl required style="background: #3d3d3d; padding: 0px" [formControl]="selectedStatus">
-                        <option value="all">All</option>
-                        <option value="read">Read</option>
-                        <option value="unread">Unread</option>
-                        </select>
-                    </mat-form-field>
-                    </div> -->
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="creationTime">
+        <th mat-header-cell *matHeaderCellDef><div class="headers"> Study Time 
+                <!-- <div class="filter-icon-btn" (click)="onTextFilter($event, 5)"><span class="material-icons filter-icon"
+                    [ngStyle]="{color: coloringFilterSymbol('patient_id') ? '#0288D1': 'grey'}" id="creationTime">
+                    filter_alt</span>
+                </div> -->
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.creationTime}} </td>
+    </ng-container>
 
-                    <!-- 0 번 컬럼 제외한 나머지 컬럼 필터 -->
-                    <div *ngIf="idx !== 0 && idx !== 8 && isMainStudy"  style="padding-left:5px;color: grey" (click)="onFilter($event, idx)">
-                        <i [ngClass]="['fa fa-filter fa-sx']" [ngStyle]="{color: coloringFilterSymbol(column) ? 'dodgerblue': 'grey'}"></i>
-                        <ng-container *ngIf="coloringFilterSymbol(column)">
-                            <span *ngIf="idx !== 0" style="color: dodgerblue; padding-left: 2px; width: auto">
-                            {{input_filter_data[column]}}
-                            </span>
-                            <span style="color: whitesmoke; padding-left: 5px;font-weight: bold" (click)="$event.stopPropagation();onRemoveFilterCondition(column)">x</span>
-                        </ng-container>
-                    </div>
-                    <!-- study_date 필터 -->
-                    <div *ngIf="idx === 8 && isMainStudy" style="padding-left:5px">
-                        <i [ngClass]="['fa fa-filter fa-sx']"
-                           [ngStyle]="{color: coloringFilterSymbol(column) ? 'dodgerblue': 'grey'}"
-                           matTooltip="{{input_filter_data[column]}}"
-                           matTooltipClass="tooltip"
-                           (click)="onFilter( $event, idx)"
-                        ></i>
-                        &nbsp;
-                        <i [ngClass]="['fa fa-calendar fa-sx']"
-                           [ngStyle]="{color: coloringFilterSymbol(column) ? 'dodgerblue': 'grey'}"
-                           matTooltip="{{input_filter_data[column]}}"
-                           matTooltipClass="tooltip"
-                           (click)="onFilterCalendar($event, idx)"
-                        ></i>
-                        <ng-container *ngIf="coloringFilterSymbol(column)">
-                            <span style="color: whitesmoke; padding-left: 5px;font-weight: bold" (click)="$event.stopPropagation();onRemoveFilterCondition(column)">x</span>
-                        </ng-container>
-                    </div>
-                </th>
-                <!-- //START SPECIFIC COULMN INFO// -->
-                <!-- Examined status, display yellow color (nodule, lungRads) -->
-                <td mat-cell *matCellDef="let row" [ngClass]="getStudyListItemNoduleCountClass(row, column)">
-                    <span class="truncate-text">
-                        <ng-container *ngIf="idx === 0 && row['status'] === 'Analysing'" style="padding-left:5px">
-                            <div class="animation-5">
-                                <div class="bar bar1"></div>
-                                <div class="bar bar2"></div>
-                                <div class="bar bar3"></div>
-                                <div class="bar bar4"></div>
-                                <div class="bar bar5"></div>
-                            </div>
-                        </ng-container>
-                        <ng-container *ngIf="idx === 0 && row['status'] !== 'Analysing'">{{row[column]}}</ng-container>
-                        <ng-container *ngIf="idx === 5">
-                            <ng-container *ngIf="userId.includes('snuh-'); else normalNodules"></ng-container>
-                            <ng-template #normalNodules>{{row[column]}}</ng-template>
-                        </ng-container>
-                        <ng-container *ngIf="idx === 6 && !!row[column]">
-                            <ng-container *ngIf="userId.includes('snuh-'); else normalCategory"></ng-container>
-                            <ng-template #normalCategory>
-                                <ng-container *ngIf="row.isEstimated; else currentStudyLungRads">({{row[column]}})</ng-container>
-                                <ng-template #currentStudyLungRads>{{row.final_rads_score}}</ng-template>
-                            </ng-template>
-                        </ng-container>
-                        <ng-container *ngIf="idx === 8">
-                            <ng-container *ngIf="userId.includes('snuh-'); else normalStudyDate"></ng-container>
-                            <ng-template #normalStudyDate>{{row[column]}}</ng-template>
-                        </ng-container>
-                        <ng-container *ngIf="idx === 9">
-                            <ng-container *ngIf="userId.includes('snuh-'); else normalDescription"></ng-container>
-                            <ng-template #normalDescription>{{row[column]}}</ng-template>
-                        </ng-container>
-                        <ng-container *ngIf="idx !== 0 && idx !== 5 && idx !== 6 && idx !== 8 && idx !== 9">{{row[column]}}</ng-container>
-                    </span>
-                </td>
-                <!-- //END SPECIFIC COULMN INFO// -->
-            </ng-container>
-            <!-- one click, double click, mouse over status display -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns2; sticky: true"></tr>
-            <ng-container *ngIf="isMainStudy; else relatedStudyTemplate">
-                <tr mat-row #matRow
-                    *matRowDef="let row; columns: displayedColumns2"
-                    [ngClass]="{
-                      'non-selected-study-row': currentStudy.study_instance_uid !== row.study_instance_uid,
-                      'selected-study-row': currentStudy.study_instance_uid === row.study_instance_uid,
-                      'clicked-study-row': currentWorkListStudy.study_instance_uid === row.study_instance_uid
-                    }"
-                    class="study-element-row"
-                    [attr.patient_id]="getRowPosition(row)"
-                    (click)="onClick($event, row);"
-                    (contextmenu)="onContextMenu($event, row)"
-                ></tr>
-<!--                    (dblclick)="onDblClick($event, row)"-->
-            </ng-container>
-            <ng-template #relatedStudyTemplate>
-                <tr mat-row
-                    *matRowDef="let row; columns: displayedColumns2"
-                    [ngClass]="{
-                      'non-selected-study-row': currentStudy.study_instance_uid !== row.study_instance_uid,
-                      'selected-study-row': currentStudy.study_instance_uid === row.study_instance_uid,
-                      'clicked-study-row': currentWorkListStudy.study_instance_uid === row.study_instance_uid
-                    }"
-                    class="study-element-row"
-                    (click)="onClickRelatedStudy($event, row);"
-                    (contextmenu)="onContextMenuForRelatedStudy($event, row)"
-                ></tr>
-<!--                    (dblclick)="onDblClickforRelatedStudy($event, row)"-->
-            </ng-template>
-        </table>
-    </div>
-</ng-template>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)" class="hospital-pacs-row">
+    </tr>
 
-<!-- <div #trigger="matMenuTrigger"
-     style="position: fixed"
-     [style.left]="contextMenuPosition.x"
-     [style.top]="contextMenuPosition.y"
-     [matMenuTriggerFor]="contextMenu"
-     [matMenuTriggerData]="trigger.menuData">
-</div>
-<div #trigger2="matMenuTrigger"
-     style="position: fixed"
-     [style.left]="contextMenuPosition.x"
-     [style.top]="contextMenuPosition.y"
-     [matMenuTriggerFor]="relatedContextMenu"
-     [matMenuTriggerData]="trigger2.menuData">
-</div>
+</table>
+<mat-paginator [pageSize]="15" [hidePageSize]="true"></mat-paginator>
 
-<mat-menu #contextMenu="matMenu">
-    <ng-template matMenuContent let-item="item">
-        <button class="context-menu-button" mat-menu-item (click)="onStudyContextMenu(item, true);getRelatedStudies(item)">View</button>
-        <ng-container *ngIf="permission === '' || permission === 'ADMINISTRATOR'">
-            <button class="context-menu-button" mat-menu-item (click)="requestAnalysis.emit(item)">Request Analysis</button>
-            <button class="context-menu-button" mat-menu-item (click)="deleteStudy.emit(item)">Delete Study</button>
-        </ng-container>
-    </ng-template>
-</mat-menu>
-<mat-menu #relatedContextMenu="matMenu">
-    <ng-template matMenuContent let-item="item">
-        <button class="context-menu-button" mat-menu-item (click)="onStudyContextMenu(item, false)">View</button>
-    </ng-template>
-</mat-menu>
- -->
+<h3><button type="button" (click)="exportExcelFile()">export</button></h3>

@@ -12,14 +12,17 @@ import { User, USER_DATA } from './user-data';
     encapsulation: ViewEncapsulation.None,
 })
 export class UserTableComponent implements AfterViewInit {
-    constructor(public dialogRef: MatDialogRef<UserTableComponent>,
-                @Inject(MAT_DIALOG_DATA) public modalData: any) {}
-
+    
     displayedColumns: string[] = ['select', 'id', 'name', 'permission', 'institution'];
     dataSource = new MatTableDataSource<User>(USER_DATA);
     selection = new SelectionModel<User>(true, []);
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    constructor(
+        public dialogRef: MatDialogRef<UserTableComponent>,
+        @Inject(MAT_DIALOG_DATA) public modalData: any
+    ) {}
 
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;

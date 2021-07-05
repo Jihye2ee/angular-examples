@@ -5,8 +5,8 @@ import {filter, takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NewUserComponent } from '../user-table/add-user/new-user.component';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../common/services/auth.service';
 
 @Component({
     selector: 'app-home',
@@ -86,7 +86,6 @@ export class HomeComponent implements OnInit {
       }
 
     openUserTable() {
-        console.log('[openUserTable]');
         const dialogConfig = new MatDialogConfig();
         dialogConfig.panelClass = 'user-info-dialog';
         dialogConfig.data = {};

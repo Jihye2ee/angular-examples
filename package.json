@@ -21,14 +21,13 @@
     "@angular/platform-browser": "~9.1.1",
     "@angular/platform-browser-dynamic": "~9.1.1",
     "@angular/router": "~9.1.1",
-    "@apollo/client": "^3.3.13",
     "@types/sharedworker": "0.0.29",
-    "apollo-angular": "^2.4.0",
     "bootstrap": "^4.6.0",
+    "file-saver": "^2.0.5",
     "font-awesome": "^4.7.0",
-    "graphql": "^15.5.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "xlsx": "^0.17.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

@@ -10,8 +10,8 @@ export class StudyRow {
     analysis_complete_timestamp: number;
     creation_time: number;
     last_update_time: number;
-    internal_pacs_instance_id: string;
-    study_uuid_defined_in_internal_pacs: string;
+    // internal_pacs_instance_id: string;
+    // study_uuid_defined_in_internal_pacs: string;
     tags: string;
 
     patient_id: string;

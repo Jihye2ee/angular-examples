@@ -16,6 +16,12 @@ import { AuthService } from './common/services/auth.service';
 import { StudiesComponent } from './studies/studies.component';
 import { StudiesService } from './common/services/studies.service';
 import { ExcelService } from './common/services/excel.service';
+import { AutoSearchComponentComponent } from './auto-search-component/auto-search-component.component';
+import { OptionComponent } from './auto-search-component/option/option.component';
+import { AutocompleteComponent } from './auto-search-component/complete/auto-complete.component';
+import { FilterPipe } from './auto-search-component/filer.pipe';
+import { AutocompleteContentDirective } from './auto-search-component/auto-complete-content.directive';
+import { AutocompleteDirective } from './auto-search-component/auto-complete.directive';
 
 const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +29,7 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent },
     {path: 'workers', component: WebWorkerComponent},
     {path: 'studies', component: StudiesComponent},
+    {path: 'auto', component: AutoSearchComponentComponent},
 ];
 @NgModule({
     declarations: [
@@ -32,7 +39,13 @@ const routes: Routes = [
         NewUserComponent,
         WebWorkerComponent,
         LoginComponent,
-        StudiesComponent
+        StudiesComponent,
+        AutoSearchComponentComponent,
+        OptionComponent,
+        AutocompleteComponent,
+        FilterPipe,
+        AutocompleteContentDirective,
+        AutocompleteDirective
     ],
     imports: [
         BrowserModule,

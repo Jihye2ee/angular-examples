@@ -102,4 +102,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['studies']);
     }
 
+    gotoAutoComplete() {
+        this.router.navigate(['auto']);
+    }
 }

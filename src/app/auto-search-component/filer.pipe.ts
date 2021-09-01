@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({  
     name: 'filter'
-})  
+})
 export class FilterPipe implements PipeTransform {
     transform(items: any[], searchTerm: string, labelKey?: string) {
         if (!items || !searchTerm) {
@@ -11,9 +11,11 @@ export class FilterPipe implements PipeTransform {
 
         return items.filter(
             item =>
-                item[labelKey || 'label']
+                searchTerm.length > 1 && 
+                item['query']
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase()) === true
         );
+        // return items;
     }
 }
